@@ -11,7 +11,7 @@ class StoreTypeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class StoreTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'unique:types,title|max:50',
+            
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.unique' => 'Questa categoria esiste già',
+            'title.max' => 'Inserisci massimo 50 caratteri',
         ];
     }
 }
