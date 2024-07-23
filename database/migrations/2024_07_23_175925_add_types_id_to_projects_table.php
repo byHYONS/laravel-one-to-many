@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             //? creo il coampo dopo l'id e con la possibilità di essere null:
-            $table->unsignedBigInteger('types_id')->nullable()->after('id');
+            $table->unsignedBigInteger('type_id')->nullable()->after('id');
 
             //? creo la chiave esterna con la relazione = set null:
-            $table->foreign('types_id')
+            $table->foreign('type_id')
                 ->references('id')
                 ->on('types')
                 ->nullOnDelete(); // set null
@@ -35,7 +35,13 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            //
+            
+            //? smonto la foreign key:
+            $table->dropForeign('projects_type_id_foreign');
+
+            //? annullo la creazione del campo:
+            $table->dropColumn('type_id');
+
         });
     }
 };

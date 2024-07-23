@@ -150,6 +150,24 @@
                     @endif
                 </div>
                 <div class="mb-3">
+                    <label for="type_id" class="form-label">Tipologia di Cliente: </label>
+                    <select name="type_id" id="type_id" class="form-select @if($errors->get('type_id')) is-invalid @endif">
+                        <option value="">Seleziona la tipologia</option>
+                        @foreach ($types as $type)
+                            <option value="{{$type->id}}" @if (old('type_id') == $type->id) selected @endif>
+                                {{$type->title}}
+                            </option>
+                        @endforeach
+                    </select>
+                    @if ($errors->get('type_id'))
+                        @foreach ($errors->get('type_id') as $message)
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                        @endforeach                        
+                    @endif
+                </div>
+                <div class="mb-3">
                     <label for="project_grade" class="form-label">Voto Progetto: </label>
                     <input type="number" class="form-control @if($errors->get('project_grade')) is-invalid @endif" value="{{ old('project_grade', 5)}}" id="project_grade" name="project_grade">
                     @if ($errors->get('project_grade'))

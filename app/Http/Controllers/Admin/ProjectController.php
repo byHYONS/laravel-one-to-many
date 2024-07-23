@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -26,7 +27,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        //? passo le types della tabella relazionata:
+        $types = Type::all();
+
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -49,6 +53,9 @@ class ProjectController extends Controller
 
         $project->slug = $slug;
         $project->image = $img_path;
+
+        //? aggiungo select della tabella relazionata types:
+        $project->type_id = $data['type_id'];
        
         $project->save();
 
@@ -69,7 +76,10 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        //? passo le types della tabella relazionata:
+        $types = Type::all();
+
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -91,6 +101,9 @@ class ProjectController extends Controller
         $slug = Str::of($project->title)->slug('-');
 
         $project->slug = $slug;
+
+        //? aggiungo select della tabella relazionata types:
+        $project->type_id = $data['type_id'];
        
         $project->save();
 

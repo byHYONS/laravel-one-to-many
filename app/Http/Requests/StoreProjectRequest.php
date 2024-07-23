@@ -33,7 +33,9 @@ class StoreProjectRequest extends FormRequest
             'material_created' => 'nullable|string|min:5|max:2500',
             'technologies_used' => 'nullable|string|min:5|max:2500',
             'collaborations' => 'nullable|string|min:5|max:2500',
-            'project_grade' => 'nullable|numeric|min:1|max:10'
+            'project_grade' => 'nullable|numeric|min:1|max:10',
+            //? valido la types:
+            'type_id' => 'nullable|exists:types,id',
         ];
     }
 
@@ -63,7 +65,9 @@ class StoreProjectRequest extends FormRequest
             'collaborations.max' => 'Inserisci massimo 2500 craratteri',
             'project_grade.numeric' => 'Inserisci un numero valido da 1 a 10',
             'project_grade.min' => 'Inserisci un numero da 1 a 10',
-            'project_grade.max' => 'Inserisci un numero da 1 a 10'
+            'project_grade.max' => 'Inserisci un numero da 1 a 10',
+            //? valido la types:
+            'type_id.exists' => 'Questa tabella non esiste',
         ];
     }
 }

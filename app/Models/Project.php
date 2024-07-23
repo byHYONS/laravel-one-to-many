@@ -13,4 +13,11 @@ class Project extends Model
     protected $guarded = ['id'];
 
     // protected $fillable = [''];
+
+
+    //? in Projects creo relazione molti a uno con Type:
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
 }
