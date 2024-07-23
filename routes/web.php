@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboarController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,11 @@ Route::middleware('auth', 'verified')
     Route::resource('projects', ProjectController::class)
     //* chiamo la rotta con lo slug e non con l'id:
     ->parameters(['projects' => 'project:slug']);
+
+    //? Recources Type:
+    Route::resource('types', TypeController::class)
+    //* chiamo la rotta con lo slug e non con l'id:
+    ->parameters(['types' => 'type:slug']);
     
     
 });
