@@ -1,4 +1,4 @@
-# ESERCIZIO: Laravel Boolfolio - Base
+# ESERCIZIO: Laravel Boolfolio - Project Typology
 
 > [!NOTE]
 >
