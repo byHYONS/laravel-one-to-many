@@ -156,7 +156,7 @@
                     <select name="type_id" id="type_id" class="form-select @if($errors->get('type_id')) is-invalid @endif">
                         <option value="">Seleziona la tipologia</option>
                         @foreach ($types as $type)
-                            <option value="{{$type->id}}" @if (old('type_id') == $type->id) selected @endif>
+                            <option value="{{$type->id}}" @if (old('type_id', $project->type?->id) == $type->id) selected @endif>
                                 {{$type->title}}
                             </option>
                         @endforeach
