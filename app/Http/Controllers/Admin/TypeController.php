@@ -43,7 +43,7 @@ class TypeController extends Controller
 
         $type->save();
 
-        return redirect()->route('admin.types.index');
+        return redirect()->route('admin.types.show', $type);
 
     }
 
@@ -52,7 +52,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        return view('admin.types.show', compact('type'));
     }
 
     /**
@@ -60,7 +60,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
@@ -68,7 +68,20 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $data = $request->validated();
+
+  
+        $type->update($data); //* va dopo l'aggiornamento slug se no devo inserire anche il save()
+
+        $slug = Str::of($type->title)->slug('-');
+
+        $type->slug = $slug;
+
+        $type->save();
+
+        return redirect()->route('admin.types.show', $type);
+
+
     }
 
     /**
@@ -76,6 +89,8 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+
+        return redirect()->route('admin.types.index');
     }
 }

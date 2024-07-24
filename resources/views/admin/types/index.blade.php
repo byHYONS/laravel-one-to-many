@@ -46,12 +46,11 @@
                                                 <span class="modale__exit">CHIUDI</span>
                                                 <h4>Sei sicuro di voler cancellare?</h4>
                                                 <p>La cancellazione è irreversibile</p>
-                                                {{-- <form id="delete-form-{{$type->slug}}" action="{{route('admin.type.destroy', $type->slug)}}" method="POST">
-                                                    {{-- @dd($project->slug) --}}
+                                                <form id="delete-form-{{$type->slug}}" action="{{route('admin.types.destroy', $type->slug)}}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <input class="delete" type="submit" value="Elimina Elemento">
-                                                </form> --}}
+                                                </form>
                                             </div>
     
                                         </div>

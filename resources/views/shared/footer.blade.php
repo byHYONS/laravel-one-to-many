@@ -52,6 +52,9 @@
                     <li>
                         <a class="footer-link" href="{{ route('admin.projects.index') }}">{{ __('Projects') }}</a>
                     </li>
+                    <li>
+                        <a class="footer-link" href="{{ route('admin.types.index') }}">{{ __('Typology') }}</a>
+                    </li>
                     @endauth
                 </ul>
                 

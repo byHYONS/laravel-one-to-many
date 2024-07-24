@@ -6,8 +6,8 @@
     <div class="container">
         {{--? bottone indietro --}}
         <div class="back">
-            <a href="{{route('admin.projects.show', $project) }}">{{ __('Torna al Dettaglo')}}</a>              
-            <a class="ml-25" href="{{route('admin.projects.index') }}">{{ __('Torna alla Lista')}}</a>              
+            <a href="{{route('admin.types.show', $type) }}">{{ __('Torna al Dettaglo')}}</a>              
+            <a class="ml-25" href="{{route('admin.types.index') }}">{{ __('Torna alla Lista')}}</a>              
         </div>
 
         <div class="add-project">
@@ -32,7 +32,7 @@
 
                 <div class="mb-3">
                     <label for="title" class="form-label">Tipologia di Cliente: </label>
-                    <input type="text" class="form-control @if($type->get('title')) is-invalid @endif" value="{{ old('title', $type->title)}}" id="title" name="title">
+                    <input type="text" class="form-control @if($errors->get('title')) is-invalid @endif" value="{{ old('title', $type->title)}}" id="title" name="title">
                     @if ($errors->get('title'))
                     @foreach ($errors->get('title') as $message)
                     <div class="invalid-feedback">

@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class UpdateTypeRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class UpdateTypeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,21 @@ class UpdateTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => [
+                'required',
+                'string',
+                'min:3',
+                'max:100',
+                Rule::unique('types', 'title')->ignore($this->type),
+            ]
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.unique' => 'Questa categoria esiste già',
+            'title.max' => 'Inserisci massimo 50 caratteri',
         ];
     }
 }
